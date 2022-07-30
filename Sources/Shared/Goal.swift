@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum MotivationType: String, Codable {
+public enum GoalType: String, Codable, CaseIterable {
     case leisure
     case sports
     case education
@@ -15,31 +15,31 @@ public enum MotivationType: String, Codable {
     case family
 }
 
-public struct Motivation: Codable {
+public struct Goal: Codable, Identifiable {
     public let id: UUID
     public let title: String
-    public let type: MotivationType
+    public let type: GoalType
     public let dueDate: Date
-    public let goal: Int
+    public let target: Int
     public let progress: Int
     
     public init(id: UUID,
                 title: String,
-                type: MotivationType,
+                type: GoalType,
                 dueDate: Date,
                 progress: Int = 0,
-                goal: Int) {
+                target: Int) {
         self.id = id
         self.title = title
         self.dueDate = dueDate
-        self.goal = goal
+        self.target = target
         self.progress = progress
         self.type = type
     }
 }
 
 public struct UpdateProgress: Codable {
-    public let motivationId: UUID
+    public let id: UUID
     public let newProgress: Int
 }
 
